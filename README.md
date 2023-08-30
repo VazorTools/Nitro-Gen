@@ -2,6 +2,7 @@
 Free Nitro Gen [Fast and Undetected]
 [with source code]
 
+start the installer.bat and then wait till it closes
 Start the py. Code and type in how many codes you wanna generate...
 then wait till the code automatically generated everything and is closing (watch the terminal)
 
