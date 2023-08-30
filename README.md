@@ -10,7 +10,7 @@ then wait till the code automatically generated everything and is closing (watch
 
 Is this free to use? Yes.
 
-Is it a virus/malware? No, you can upload it on virustotal to check. Screenshot 2023-05-18 at 5 52 50 PM
+Is it a virus/malware? No, you can upload it on virustotal to check. 
 
 Is there support? Yes, ill reply when im free :)
 
