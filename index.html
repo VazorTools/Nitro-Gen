@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Message to Discord</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        input[type="text"], input[type="number"], textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        button {
+            cursor: pointer;
+            background-color: #7289DA;
+            color: white;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #677BC4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Send Message to Discord</h1>
+    
+    <div class="container">
+        <label for="webhook">Discord Webhook:</label>
+        <input type="text" id="webhook" placeholder="Enter Webhook URL">
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+
+        <label for="repeat">Repeat:</label>
+        <input type="number" id="repeat" placeholder="Enter the number of times to send">
+
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var webhookUrl = document.getElementById("webhook").value;
+            var messageText = document.getElementById("message").value;
+            var repeatCount = parseInt(document.getElementById("repeat").value);
+            
+            if (!webhookUrl || !messageText || isNaN(repeatCount) || repeatCount <= 0) {
+                alert("Please fill in all fields and provide a valid repeat count.");
+                return;
+            }
+
+            var message = {
+                embeds: [
+                    {
+                        title: "Message from Web Page",
+                        description: messageText,
+                        color: 3447003
+                    }
+                ]
+            };
+            
+            for (var i = 0; i < repeatCount; i++) {
+                fetch(webhookUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(message)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Message sent successfully to Discord.");
+                    } else {
+                        console.error("Error sending message to Discord.");
+                    }
+                })
+                .catch(error => {
+                    console.error("An unexpected error occurred:", error);
+                });
+            }
+
+            alert("Messages sent successfully to Discord!");
+        }
+    </script>
+</body>
+</html>
